@@ -4,7 +4,7 @@
   name: funiki-crawler
   class: hm.orz.sumpic.App
 [scala]
-  version: 2.10
+  version: 2.11.1
 [repositories]
   gh-pages:http://kazuhito-m.github.io/funiki-crawler/
   local
