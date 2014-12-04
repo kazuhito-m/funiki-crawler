@@ -8,10 +8,8 @@ class ParserForTwilogHtmlSpec  extends Specification {
   "HTMLをパースしオブジェクトに換えることが出来る" should {
     "ファイルを読み解析できる" in {
      // テスト用のHTMLファイルを読む。
-      // TODO リソースから読むよう変更。
-      val html = Source.fromURL(getClass.getResource("/test.html")).getLines.toList.foreach { i =>
-        _ + "\n" + _
-      }
+      val html = Source.fromURL(getClass.getResource("test.html")).getLines.toList.mkString("\n")
+
       println(html)
 
 
