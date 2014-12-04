@@ -36,7 +36,7 @@ object Analizer {
       val hinshi:String = posAtt.getPartOfSpeech
       if (hinshi.startsWith("名詞")) {
         if (hinshi.contains("固有名詞") || hinshi.contains("一般")) {
-          nouns = nouns :::  charAtt.toString :: Nil
+          nouns = nouns :+ charAtt.toString
         }
       }
     }
