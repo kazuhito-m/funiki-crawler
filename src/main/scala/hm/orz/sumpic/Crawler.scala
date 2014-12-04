@@ -11,10 +11,8 @@ class Crawler {
     // まず、Twitterのログ収集サイトから、一定分のツイートを読み込む。
     val tweets = Scraper.scraping("kazuhito_m")
 
-    // TODO デバッグ。いつか殺す。
-    println(tweets)
-
-    // TODO ツイートすべてに形態素解析をかけ、名詞だけを取り出す。
+    // ツイートすべてに形態素解析をかけ、名詞だけを取り出す。
+    val nouns: List[String] = Analizer.getNounsFromTweets(tweets)
 
     // TODO 名詞を集計し、TOP100程度を出す。
 

@@ -5,6 +5,7 @@ import java.io.StringReader
 import org.apache.lucene.analysis.ja.JapaneseTokenizer.Mode
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute
 import org.apache.lucene.analysis.ja.tokenattributes.PartOfSpeechAttribute
+import hm.orz.sumpic.Scraper.TweetContent
 
 /**
  * ツイートの束を元手に解析・集計・加工するクラス。
@@ -45,5 +46,17 @@ object Analizer {
     nouns
   }
 
+  /**
+   * 指定されたツイートの束を一つづつ形態素解析し名詞のみをリストに蓄える。
+   * @param tweets ツイートの束。
+   * @return 名詞の文字列がつまったリスト。
+   */
+  def getNounsFromTweets(tweets:List[TweetContent]):List[String] = {
+    var nouns: List[String] = List.empty[String]
+    tweets.foreach { i=>
+      nouns = nouns ::: getNouns(i.content)
+    }
+    nouns
+  }
 }
 

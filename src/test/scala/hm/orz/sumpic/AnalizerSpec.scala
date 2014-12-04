@@ -1,9 +1,9 @@
 package hm.orz.sumpic
 
 import org.specs2.mutable._
+import hm.orz.sumpic.Scraper.TweetContent
 
-class
-AnalizerSpec  extends Specification {
+class AnalizerSpec extends Specification {
 
   "ツイートの束を分析出来る。" should {
     "文字列を線形粗解析し名詞を蓄える" in {
@@ -15,6 +15,25 @@ AnalizerSpec  extends Specification {
 
       // assert
       actual.size must equalTo(4)
+    }
+
+    "ツイートオブジェクトの束から名詞を蓄えることが出来る。" in {
+      // arrange
+      val tweets = List[TweetContent] (
+        TweetContent("1111","今日","私の名前はミウラ一仁です。")
+        ,TweetContent("1111","今日","日曜には、協会のミサに行く予定の雰囲気を醸し出しています。")
+        ,TweetContent("1111","今日","西島洋介山こそ、探されるべき人類だと思います。。")
+        ,TweetContent("1111","今日","やまーだでんきっ！")
+        ,TweetContent("1111","今日","これで、いいの。自分を好きなって。")
+        ,TweetContent("1111","今日","ホーリーローリーマウンテンがものを言うやつだな。。")
+        ,TweetContent("1111","今日","念願のアイスソードを手に入れたぞ。")
+      )
+
+      // act
+      val actual = Analizer.getNounsFromTweets(tweets)
+
+      // assert
+      actual.size must equalTo(18)
     }
   }
 }
