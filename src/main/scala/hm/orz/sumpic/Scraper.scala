@@ -47,8 +47,7 @@ object Scraper {
   }
 
   def scrapeHtml(html: String): List[TweetContent] = {
-    println(html)
-    List()
+    ParserForTwilogHtml.parse(html)
   }
 
   /**

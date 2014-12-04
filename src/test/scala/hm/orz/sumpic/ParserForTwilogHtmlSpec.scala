@@ -16,7 +16,7 @@ class ParserForTwilogHtmlSpec extends Specification {
       val actual = ParserForTwilogHtml.parse(html)
 
       // assert
-      actual must not beNull
+      actual.size must equalTo(45)
     }
   }
 }
