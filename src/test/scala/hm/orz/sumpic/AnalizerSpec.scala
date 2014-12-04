@@ -36,4 +36,25 @@ class AnalizerSpec extends Specification {
       actual.size must equalTo(18)
     }
   }
+
+  "集計し頻出ワードを出せる" should {
+    "名詞のリストを集計し頻繁に出てくるTopいくつかを指定された数だけ上から取れる" in {
+      // arrange
+      val nouns = List[String](
+        "A","A","A","A","A","A",
+        "B","B","B","B","B","B","B","B","B","B",
+        "C","C","C","C",
+        "D","D"
+      )
+
+      // act
+      val actual = Analizer.sumNonsTopX(nouns , 3)
+
+      // assert
+      actual must equalTo(List("B","A","C"))
+
+    }
+  }
+  }
+
 }

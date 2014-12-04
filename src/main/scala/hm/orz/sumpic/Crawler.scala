@@ -14,7 +14,8 @@ class Crawler {
     // ツイートすべてに形態素解析をかけ、名詞だけを取り出す。
     val nouns: List[String] = Analizer.getNounsFromTweets(tweets)
 
-    // TODO 名詞を集計し、TOP100程度を出す。
+    // 名詞を集計し、TOP100程度を出す。
+    val topNouns: List[String] = Analizer.sumNonsTopX(nouns , 100)
 
     // TODO Redisに接続し、名詞を書き出す。
 

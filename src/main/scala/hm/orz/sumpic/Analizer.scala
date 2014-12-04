@@ -58,5 +58,16 @@ object Analizer {
     }
     nouns
   }
+
+  /**
+   * 引数に指定された「名詞のリスト(重複在り)」を集計し、
+   * 引数に指定された「上位何件」だけをリストで返す。
+   * @param nouns 名詞リスト。
+   * @param max 「いくつ返すか」のマックス。
+   */
+  def sumNonsTopX(nouns:List[String] ,max:Int):List[String] = {
+    // TODO 仮実装
+    nouns
+  }
 }
 
