@@ -12,7 +12,8 @@ publishTo := Some(Resolver.file("funiki-crawler",file("./"))(Patterns(true, Reso
 
 libraryDependencies ++= Seq(
   "org.specs2" %% "specs2" % "2.3.11" % "test",
-  "org.scalatest" %% "scalatest" % "2.2.1-M3" % "test"
+  "org.scalatest" %% "scalatest" % "2.2.1-M3" % "test",
+  "org.apache.lucene" % "lucene-kuromoji" % "3.6.2"
 )
 
 resolvers ++= Seq("snapshots", "releases").map(Resolver.sonatypeRepo)
