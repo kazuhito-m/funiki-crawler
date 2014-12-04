@@ -8,12 +8,10 @@ class App extends xsbti.AppMain {
 }
 
 object App {
-  /** Shared by the launched version and the runnable version,
-   * returns the process status code */
   def run(args: Array[String]): Int = {
-    println("Hello World: " + args.mkString(" "))
-    0
+    (new Crawler()).crawl()
   }
+
   /** Standard runnable class entrypoint */
   def main(args: Array[String]) {
     System.exit(run(args))
