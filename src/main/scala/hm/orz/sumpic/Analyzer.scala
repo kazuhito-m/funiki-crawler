@@ -10,7 +10,7 @@ import hm.orz.sumpic.Scraper.TweetContent
 /**
  * ツイートの束を元手に解析・集計・加工するクラス。
  */
-object Analizer {
+object Analyzer {
 
   /** 名詞を表すケースクラス。 */
   case class Noun(value:String,count:Int)

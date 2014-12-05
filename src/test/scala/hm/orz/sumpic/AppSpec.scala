@@ -6,9 +6,11 @@ class AppSpec  extends Specification {
 
   "コンソールからの実行が出来る" should {
     "ともかくゼロを返してくる" in {
-      // 実行
+      // arrange
+      (new RedisAccesserSpec()).initConstValues() // 初期データ放り込む。
+      // act
       val actual = App.run(Array())
-      // 結果確認
+      // assert
       actual must equalTo(0)
     }
   }

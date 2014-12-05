@@ -6,9 +6,21 @@ import com.redis.RedisClient
 
 class RedisAccesserSpec extends Specification {
 
+  /**
+   * テスト用ユティリティメソッド。
+   * 予め「Redisに求められる定数的なKey:Value」を設定する。
+   */
+  def initConstValues() = {
+    val redis = RedisAccesser.getClient()
+    redis.set("stalking_target_twitter_id","kazuhito_m")
+    redis.set("nouns_top_x",100)
+    redis.set("analyze_tweet_limit",1000)
+  }
+
   "Redisにアクセスし読み書き出来る" should {
     "名詞のリストを書き込むことが出来る" in {
       // arrange
+      initConstValues()  // Redisに初期値突っ込む。
 
       // テスト用の「名詞」データ
       val expected = List("コレ","名詞","データ","だってばよ！")

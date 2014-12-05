@@ -3,7 +3,7 @@ package hm.orz.sumpic
 import org.specs2.mutable._
 import hm.orz.sumpic.Scraper.TweetContent
 
-class AnalizerSpec extends Specification {
+class AnalyzerSpec extends Specification {
 
   "ツイートの束を分析出来る。" should {
     "文字列を線形粗解析し名詞を蓄える" in {
@@ -11,7 +11,7 @@ class AnalizerSpec extends Specification {
       val words = "私の名前は三浦一仁です。"
 
       // act
-      val actual = Analizer.getNouns(words)
+      val actual = Analyzer.getNouns(words)
 
       // assert
       actual.size must equalTo(3)
@@ -30,7 +30,7 @@ class AnalizerSpec extends Specification {
       )
 
       // act
-      val actual = Analizer.getNounsFromTweets(tweets)
+      val actual = Analyzer.getNounsFromTweets(tweets)
 
       // assert
       actual.size must equalTo(14)
@@ -48,7 +48,7 @@ class AnalizerSpec extends Specification {
       )
 
       // act
-      val actual = Analizer.sumNounsTopX(nouns , 3)
+      val actual = Analyzer.sumNounsTopX(nouns , 3)
 
       // assert
       //      actual must equalTo(List("B","A","C"))

@@ -24,20 +24,20 @@ object Scraper {
    * 解析 ＆ 収集。
    * @return ツイートの束。
    */
-  def scraping(twitterId: String): List[TweetContent] = {
+  def scraping(twitterId: String, limit: Int): List[TweetContent] = {
     // ネストしながら再帰でリスト作っていく関数を呼ぶ。
-    getTweetLogs(List[TweetContent](), twitterId: String, 1)
+    getTweetLogs(List[TweetContent](), twitterId, limit, 1)
   }
 
-  def getTweetLogs(tweets: List[TweetContent], twitterId: String, depth: Int): List[TweetContent] = {
+  def getTweetLogs(tweets: List[TweetContent], twitterId: String, limit: Int, depth: Int): List[TweetContent] = {
     // まず「予め設けた最大ツイート数」を超えてないようなら
-    if (tweets.size < LOGGING_LIMIT) {
+    if (tweets.size < limit) {
       // ページのテキストを取得する。
       val html = getTweetLogSiteHtmlText(twitterId, depth)
       // HTMLが「打ち止め」のようなら、コレ以上再帰せず戻る。
       if (html != null && html.length > 0) {
         // スクレイピングして「Tweetのリスト」を取得。それを末尾につけたリストを作り、
-        return getTweetLogs(tweets ::: scrapeHtml(html), twitterId, depth + 1)
+        return getTweetLogs(tweets ::: scrapeHtml(html), twitterId, limit, depth + 1)
       }
     }
     // ここまで来たってことは「何か打ち止め要素があった」ってこと。素直に引数返す。
@@ -80,8 +80,8 @@ object Scraper {
       src.reduceLeft {
         _ + _
       }
-    } catch  {
-      case e:Exception => null
+    } catch {
+      case e: Exception => null
     }
   }
 
