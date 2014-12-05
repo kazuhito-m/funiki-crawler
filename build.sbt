@@ -2,6 +2,7 @@ seq(conscriptSettings :_*)
 
 organization := "hm.orz.sumpic"
 
+
 name := "funiki-crawler"
 
 version := "0.1.0"
@@ -14,7 +15,8 @@ libraryDependencies ++= Seq(
   "org.specs2" %% "specs2" % "2.3.11" % "test",
   "org.scalatest" %% "scalatest" % "2.2.1-M3" % "test",
   "org.apache.lucene" % "lucene-kuromoji" % "3.6.2",
-  "org.jsoup" % "jsoup" % "1.8.1"
+  "org.jsoup" % "jsoup" % "1.8.1" ,
+  "net.debasishg" % "redisclient_2.11" % "2.14"
 )
 
 resolvers ++= Seq("snapshots", "releases").map(Resolver.sonatypeRepo)

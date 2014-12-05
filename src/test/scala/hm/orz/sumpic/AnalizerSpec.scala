@@ -55,6 +55,4 @@ class AnalizerSpec extends Specification {
 
     }
   }
-  }
-
 }
