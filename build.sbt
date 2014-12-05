@@ -9,7 +9,7 @@ version := "0.1.0"
 
 scalaVersion := "2.11.1"
 
-publishTo := Some(Resolver.file("funiki-crawler",file("./"))(Patterns(true, Resolver.mavenStyleBasePattern)))
+publishTo := Some(Resolver.file("funiki-crawler",file("./target/repo"))(Patterns(true, Resolver.mavenStyleBasePattern)))
 
 libraryDependencies ++= Seq(
   "org.specs2" %% "specs2" % "2.3.11" % "test",
