@@ -37,9 +37,7 @@ object Scraper {
       // HTMLが「打ち止め」のようなら、コレ以上再帰せず戻る。
       if (html != null && html.length > 0) {
         // スクレイピングして「Tweetのリスト」を取得。それを末尾につけたリストを作り、
-
- // TODO 今は再帰しない
- //       return getTweetLogs(tweets ::: scrapeHtml(html), twitterId, depth + 1)
+        return getTweetLogs(tweets ::: scrapeHtml(html), twitterId, depth + 1)
       }
     }
     // ここまで来たってことは「何か打ち止め要素があった」ってこと。素直に引数返す。

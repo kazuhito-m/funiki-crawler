@@ -11,19 +11,14 @@ class RedisAccesserSpec extends Specification {
       // arrange
 
       // テスト用の「名詞」データ
-      val nones = List("コレ","名詞","データ")
+      val nones = List("コレ","名詞","データ","だってばよ！")
 
       // act
-      val actual = RedisAccesser.restoreNones(nones)
+      RedisAccesser.restoreNones(nones)
+      val actual:List[String] = RedisAccesser.getNones()
 
       // assert
-
-      // 一度別手段で、Localhost上のRedisから生で読んでみる
-      val r = new RedisClient("localhost", 6379)
-      r.set("key", "some value")
-      println(r.get("key").get)
-
-      r.get("key").get must equalTo("some value")
+      actual must equalTo(nones)
     }
   }
 }

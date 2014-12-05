@@ -8,22 +8,19 @@ import com.redis.RedisClient
 object RedisAccesser {
 
   /** RadisにList型で登録する「名詞」のキー */
-  val NONES_KEY = "noun"
+  val NONES_KEY = "none"
 
   def getClient():RedisClient = {
-    new RedisClient()("localhost", 6379)
+    new RedisClient("localhost", 6379)
   }
 
   def restoreNones(nones:List[String]) = {
     // 前準備。クライアント用意。
     val client = getClient()
-
     // 一度キーごと削除し…
     client.del(NONES_KEY)
-
     // 全量足す。
-    nones.foreach(none => client.rpush(NONES_KEY , none))
-
+    nones.foreach(client.rpush(NONES_KEY , _))
   }
   
   def getNones():List[String] = {
@@ -34,7 +31,6 @@ object RedisAccesser {
     // 指定リストを「全件指定」で取得。
     val values = client.lrange(NONES_KEY,0,count.toInt)
     // Optionalのリストが帰ってきているはずだから、バラしながら回してリスト作ってく。
-    // TODO 実装 values.
-    null
+    values.get.map(_.get)
   }
 }
