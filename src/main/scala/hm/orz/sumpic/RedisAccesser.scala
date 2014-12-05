@@ -8,28 +8,28 @@ import com.redis.RedisClient
 object RedisAccesser {
 
   /** RadisにList型で登録する「名詞」のキー */
-  val NONES_KEY = "none"
+  val NOUNS_KEY = "noun"
 
   def getClient():RedisClient = {
     new RedisClient("localhost", 6379)
   }
 
-  def restoreNones(nones:List[String]) = {
+  def restoreNouns(nouns:List[String]) = {
     // 前準備。クライアント用意。
     val client = getClient()
     // 一度キーごと削除し…
-    client.del(NONES_KEY)
+    client.del(NOUNS_KEY)
     // 全量足す。
-    nones.foreach(client.rpush(NONES_KEY , _))
+    nouns.foreach(client.rpush(NOUNS_KEY , _))
   }
   
-  def getNones():List[String] = {
+  def getNouns():List[String] = {
     // 前準備。クライアント用意。
     val client = getClient()
     // 指定リストの長さを取得。
-    val count = client.llen(NONES_KEY).get
+    val count = client.llen(NOUNS_KEY).get
     // 指定リストを「全件指定」で取得。
-    val values = client.lrange(NONES_KEY,0,count.toInt)
+    val values = client.lrange(NOUNS_KEY,0,count.toInt)
     // Optionalのリストが帰ってきているはずだから、バラしながら回してリスト作ってく。
     values.get.map(_.get)
   }

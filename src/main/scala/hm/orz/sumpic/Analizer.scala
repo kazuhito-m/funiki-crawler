@@ -35,9 +35,13 @@ object Analizer {
 
       // 品詞名を判定
       val hinshi:String = posAtt.getPartOfSpeech
+      val noun = charAtt.toString
       if (hinshi.startsWith("名詞")) {
         if (hinshi.contains("固有名詞") || hinshi.contains("一般")) {
-          nouns = nouns :+ charAtt.toString
+          // さすがに一文字のは「ノイズやろ…」と捉え無視しとく
+          if (noun.length > 1) {
+            nouns = nouns :+ noun
+          }
         }
       }
     }
@@ -65,9 +69,9 @@ object Analizer {
    * @param nouns 名詞リスト。
    * @param max 「いくつ返すか」のマックス。
    */
-  def sumNonsTopX(nouns:List[String] ,max:Int):List[String] = {
-    // TODO 仮実装
-    nouns
+  def sumNounsTopX(nouns:List[String] ,max:Int):List[String] = {
+    // TODO 仮実装（ではあるけども、せめて重複はのぞいとこうか）
+    nouns.distinct.take(max)
   }
 }
 
