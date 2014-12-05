@@ -8,7 +8,7 @@ sbt clean publish
 git checkout gh-pages
 
 # 設定により、./target/repo にビルドした一式が入っているはずなので、そこからトップへコピー。
-cp -R ./target/repo/hm ./
+\cp -rf ./target/repo/hm ./
 
 # git commit
 git add ./
