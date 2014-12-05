@@ -10,10 +10,18 @@ object RedisAccesser {
   /** RadisにList型で登録する「名詞」のキー */
   val NOUNS_KEY = "noun"
 
+  /**
+   * Redisクライアントオブジェクトを取得する。
+   * @return Redisの操作一式をくれるクライアントオブジェクト。
+   */
   def getClient():RedisClient = {
     new RedisClient("localhost", 6379)
   }
 
+  /**
+   * 「名詞」リストを上書き保存する。
+   * @param nouns 保存対象の「名詞」のリスト。
+   */
   def restoreNouns(nouns:List[String]) = {
     // 前準備。クライアント用意。
     val client = getClient()
@@ -22,7 +30,11 @@ object RedisAccesser {
     // 全量足す。
     nouns.foreach(client.rpush(NOUNS_KEY , _))
   }
-  
+
+  /**
+   * 「名詞」リストを取り出す。
+   * @return 取得できた「名詞」リスト。
+   */
   def getNouns():List[String] = {
     // 前準備。クライアント用意。
     val client = getClient()
